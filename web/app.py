@@ -1,6 +1,16 @@
+import sys
+import os
+
+# Add the parent folder of src to sys.path
+# If your structure is:
+# /mount/src/llm-profile-agent/web/app.py
+# /mount/src/llm-profile-agent/src/agent.py
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from src.agent import ask_agent
+
 # web/app.py
 import streamlit as st
-from src.agent import ask_agent
 from web.components import display_response
 
 # --- Streamlit page config ---
