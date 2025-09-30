@@ -1,6 +1,6 @@
 # web/app.py
 import streamlit as st
-from src.agent import ask_agent
+from src import ask_agent
 from web.components import display_response
 
 # --- Streamlit page config ---
