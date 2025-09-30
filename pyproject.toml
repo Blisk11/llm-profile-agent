@@ -23,6 +23,9 @@ dev = [
     "flake8"
 ]
 
+[tool.poetry]
+package-mode = false
+
 [tool.black]
 line-length = 88
 target-version = ['py38']
