@@ -1,4 +1,9 @@
+import sys
 import os
+
+# Add src folder to Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
+
 import time
 from mistralai import Mistral
 from mistralai.models import SDKError
