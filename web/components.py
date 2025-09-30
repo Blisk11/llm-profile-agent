@@ -14,7 +14,7 @@ def display_response(response, agent_label="Agent", as_markdown=True, expanded=T
     - as_markdown: if True, render using Markdown; else render as plain text.
     - expanded: if True, show in a collapsible container.
     """
-    container_title = f"{agent_label} Response"
+    container_title = agent_label  # use the label exactly as provided
     if expanded:
         with st.expander(container_title, expanded=True):
             if as_markdown:
