@@ -13,6 +13,9 @@ __pycache__/
 # Sensitive profile
 data/*
 
+# Except profile.json
+!data/profile.json
+
 #useless files
 test_agent.ipynb
 plan.txt
