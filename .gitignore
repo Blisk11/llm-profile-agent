@@ -11,9 +11,7 @@ __pycache__/
 .env
 
 # Sensitive profile
-data/profile.json
-data/profile_hidden_contact.json
-data/profile_NO_MARKDOWN.json
+data/*
 
 #useless files
 test_agent.ipynb
