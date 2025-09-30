@@ -13,8 +13,6 @@ from profile_loader import load_profile, load_api_key
 PROFILE_DATA = load_profile()
 MISTRAL_API_KEY = load_api_key("MISTRAL_API_KEY")
 
-
-
 def ask_agent(question: str, mode: str = "short") -> str:
     profile = load_profile()
 

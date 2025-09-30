@@ -17,3 +17,6 @@ data/*
 test_agent.ipynb
 plan.txt
 requirements.txt
+config.py
+main.py
+llm_wrapper_safe.py

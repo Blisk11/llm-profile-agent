@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Add src folder to Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
+
 import streamlit as st
 from src.agent import ask_agent  # import the function directly
 
