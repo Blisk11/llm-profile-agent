@@ -1,36 +1,31 @@
-import json
-from pathlib import Path
-from src.llm_wrapper import query_model
+# src/agent.py
 from langdetect import detect
-from profile_loader import load_profile, load_api_key
-
-# Local set up 
-# PROFILE_PATH = Path(__file__).parent.parent / "data" / "profile.json"
-#def load_profile():
-#    with open(PROFILE_PATH, "r", encoding="utf-8") as f:
-#        return json.load(f)
-
-PROFILE_DATA = load_profile()
-MISTRAL_API_KEY = load_api_key("MISTRAL_API_KEY")
+from src.profile_loader import PROFILE_DATA
+from src.llm_wrapper import query_model
 
 def ask_agent(question: str, mode: str = "short") -> str:
-    profile = load_profile()
-
+    """
+    Ask Julien Vaughan's AI agent a question.
+    - Uses centralized profile from PROFILE_DATA.
+    - Supports 'short' or 'long' response modes.
+    - Automatically adapts response style based on detected language.
+    """
     # Detect language
     try:
         lang = detect(question)
-    except:
-        lang = "en"  # Default to English if detection fails
+    except Exception:
+        lang = "en"  # default to English if detection fails
 
-    # Fetch the appropriate response style from profile.json
-    response_style = profile["response_style"].get(lang, profile["response_style"]["en"])
+    # Get response style from profile
+    response_style = PROFILE_DATA.get("response_style", {}).get(lang, PROFILE_DATA.get("response_style", {}).get("en", ""))
 
-    # Construct the system prompt
+    # Construct a system prompt using profile info
     system_prompt = (
-        f"You are {profile['name']}, a {profile['role']} based in {profile['location']}.\n"
-        f"Skills: {', '.join(profile['skills'])}.\n"
-        f"Experience: {profile['experience']}.\n"
+        f"You are {PROFILE_DATA.get('name', 'Julien Vaughan')}, a {PROFILE_DATA.get('role', '')} based in {PROFILE_DATA.get('location', '')}.\n"
+        f"Skills: {', '.join(PROFILE_DATA.get('skills', []))}.\n"
+        f"Experience: {PROFILE_DATA.get('experience', '')}.\n"
         f"{response_style}"
     )
 
-    return query_model(question, system=system_prompt, mode=mode)
+    # Query the model
+    return query_model(question, mode=mode)
