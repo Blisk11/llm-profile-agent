@@ -1,5 +1,67 @@
-# Custom Agent (Julien Profile)
+# llm-profile-agent
 
-This repo defines a lightweight agent that answers queries as **Julien Vaughan**, using Mistral’s API with deterministic responses (no hallucinations).
+An interactive personal AI agent that answers questions as **Julien Vaughan**, using Mistral’s API for deterministic, profile-driven responses. The agent showcases Julien's professional persona, skills, and experience, and can be queried via a Streamlit web app or command line.
 
-## Structure
+## Features
+
+- **Profile-based answers:** All responses are strictly based on `profile.json` (not hallucinated).
+- **Language detection:** Answers in English or French, matching the question's language.
+- **Short/Long mode:** Choose concise or detailed answers.
+- **Streamlit UI:** Ask free-form questions or select from curated examples.
+- **Safe API usage:** Deterministic responses, rate-limit handling, and identity enforcement.
+
+## Project Structure
+
+```
+ME/
+│── data/
+│   └── profile.json                # Julien's professional profile (excluded from Git)
+│── src/
+│   ├── agent.py                    # Main agent logic
+│   ├── llm_wrapper.py              # Mistral API interface and profile enforcement
+│   ├── utils.py                    # Helper functions
+│── web/
+│   ├── app.py                      # Streamlit web app
+│   └── components.py               # UI components
+│── main.py                         # Command-line interface
+│── .env                            # API keys (excluded from Git)
+│── pyproject.toml                  # Dependencies and build config
+│── .gitignore                      # Excludes sensitive and build files
+│── README.md                       # This file
+```
+
+## Quickstart
+
+1. **Install dependencies:**
+   ```
+   pip install -e .
+   ```
+
+2. **Add your Mistral API key:**
+   - Create a `.env` file in the project root:
+     ```
+     MISTRAL_API_KEY=your_api_key_here
+     ```
+
+3. **Run the Streamlit app:**
+   ```
+   streamlit run web/app.py
+   ```
+
+4. **Or use the CLI:**
+   ```
+   python main.py
+   ```
+
+## Notes
+
+- **Sensitive data:** `profile.json` and `.env` are excluded from version control for privacy and security.
+- **Profile customization:** To change the agent's persona, edit `data/profile.json` (see `profile_hidden_contact.json` for a safe template).
+- **API limits:** The agent automatically retries if the Mistral API is overloaded.
+
+## License
+
+This project is for educational and demonstration purposes.  
+Contact Julien Vaughan for professional use or collaboration.
+
+---
