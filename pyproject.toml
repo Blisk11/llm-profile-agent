@@ -1,0 +1,42 @@
+[project]
+name = "llm-profile-agent"
+version = "0.1.0"
+description = "Interactive personal AI agent to showcase Julien Vaughan's professional persona."
+authors = [
+	{ name="Julien Vaughan"}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = [
+	"pandas",
+	"langdetect",
+	"mistralai>=0.1.8",
+	"python-dotenv",
+	"streamlit"
+]
+
+[project.optional-dependencies]
+dev = [
+	"pytest",
+	"black",
+	"flake8"
+]
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+	"tests",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"

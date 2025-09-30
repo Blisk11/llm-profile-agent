@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+.venv
+
+
+# Environment variables
+.env
+
+# Sensitive profile
+data/profile.json
+data/profile_hidden_contact.json
+data/profile_NO_MARKDOWN.json
+
+#useless files
+test_agent.ipynb
+plan.txt
+requirements.txt
