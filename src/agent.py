@@ -2,12 +2,18 @@ import json
 from pathlib import Path
 from src.llm_wrapper import query_model
 from langdetect import detect
+from profile_loader import load_profile, load_api_key
 
-PROFILE_PATH = Path(__file__).parent.parent / "data" / "profile.json"
+# Local set up 
+# PROFILE_PATH = Path(__file__).parent.parent / "data" / "profile.json"
+#def load_profile():
+#    with open(PROFILE_PATH, "r", encoding="utf-8") as f:
+#        return json.load(f)
 
-def load_profile():
-    with open(PROFILE_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)
+PROFILE_DATA = load_profile()
+MISTRAL_API_KEY = load_api_key("MISTRAL_API_KEY")
+
+
 
 def ask_agent(question: str, mode: str = "short") -> str:
     profile = load_profile()
