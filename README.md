@@ -13,7 +13,7 @@ An interactive personal AI agent that answers questions as **Julien Vaughan**, u
 ## Project Structure
 
 ```
-ME/
+llm-profile-agent/
 │── data/
 │   └── profile.json                # Julien's professional profile (excluded from Git)
 │── src/
