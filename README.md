@@ -1,65 +1,132 @@
-# llm-profile-agent
+# LLM Profile Agent 🤖
 
-An interactive personal AI agent that answers questions as **Julien Vaughan**, using Mistral’s API for deterministic, profile-driven responses. The agent showcases Julien's professional persona, skills, and experience, and can be queried via a Streamlit web app or command line.
+> An AI-powered professional profile assistant built with Mistral AI and Streamlit
 
-## Features
+This agent serves as an interactive representation of **Julien Vaughan's** professional profile, providing dynamic responses to career-related inquiries in both English and French. Built with deterministic response generation and strict profile adherence.
 
-- **Profile-based answers:** All responses are strictly based on `profile.json` (not hallucinated).
-- **Language detection:** Answers in English or French, matching the question's language.
-- **Short/Long mode:** Choose concise or detailed answers.
-- **Streamlit UI:** Ask free-form questions or select from curated examples.
-- **Safe API usage:** Deterministic responses, rate-limit handling, and identity enforcement.
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)
+![Mistral](https://img.shields.io/badge/Mistral%20AI-API-purple.svg)
+![License](https://img.shields.io/badge/License-Custom-green.svg)
 
-## Project Structure
+## ✨ Features
 
-```
-llm-profile-agent/
-│── data/
-│   └── profile.json                # Julien's professional profile
-│── src/
-│   ├── __init__.py                 
-│   ├── agent.py                    # Main agent logic
-│   ├── llm_wrapper.py              # Mistral API interface and profile enforcement
-│   ├── utils.py                    # Helper functions
-│   ├── profile_loader.py           # Profile and api_key loader
-│── web/
-│   ├── app.py                      # Streamlit web app
-│   └── components.py               # UI components            
-│── pyproject.toml                  # Dependencies and build config
-│── .gitignore                      # Excludes sensitive and build files
-│── README.md                       # This file
-```
+- **Bilingual Interaction**
+  - Automatic language detection (🇬🇧 English / 🇫🇷 French)
+  - Context-aware responses in the detected language
+  - Language-specific conversation style
 
-## Quickstart
+- **Smart Response System**
+  - Profile-driven answers (no hallucination)
+  - Short/Long response modes
+  - Deterministic output with profile enforcement
 
-1. **Install dependencies:**
-   ```
+- **Professional UI**
+  - Interactive Streamlit interface
+  - Curated example questions
+  - Real-time conversation history
+  - Downloadable chat transcripts
+
+- **Enterprise-Ready**
+  - Rate limiting with exponential backoff
+  - Environment-aware configuration
+  - Production-ready deployment options
+
+## 🚀 Quick Start
+
+1. **Clone & Install:**
+   ```bash
+   git clone https://github.com/username/llm-profile-agent.git
+   cd llm-profile-agent
    pip install -e .
    ```
 
-2. **Add your Mistral API key:**
-   - Create a `.env` file in the project root:
-     ```
-     MISTRAL_API_KEY=your_api_key_here
-     ```
-
-3. **Run the Streamlit app:**
+2. **Configure API:**
+   ```bash
+   # Create .env file in project root
+   echo MISTRAL_API_KEY=your_api_key_here > .env
    ```
+
+3. **Launch:**
+   ```bash
    streamlit run web/app.py
    ```
 
-4. **Or use the CLI:**
-   ```
-   python main.py
-   ```
+## 🏗️ Project Structure
 
-## Notes
+```
+llm-profile-agent/
+├── data/                          # Data files
+│   └── profile.json               # Professional profile
+├── src/                          # Core logic
+│   ├── agent.py                  # Main agent implementation
+│   ├── llm_wrapper.py           # Mistral API interface
+│   ├── profile_loader.py        # Configuration management
+│   └── utils.py                 # Helper functions
+├── web/                          # Web interface
+│   ├── app.py                   # Streamlit application
+│   └── components.py            # UI components
+└── pyproject.toml               # Project configuration
+```
 
-- **API limits:** The agent automatically retries if the Mistral API is overloaded.
+## 💻 Development
 
-## License
+### Requirements
+- Python 3.8+
+- Mistral AI API key
+- Dependencies listed in `pyproject.toml`
+
+### Environment Setup
+```bash
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # or `venv\Scripts\activate` on Windows
+
+# Install dev dependencies
+pip install -e ".[dev]"
+```
+
+### Code Style
+The project follows:
+- Black formatter (88 char line length)
+- PEP 8 guidelines
+- Type hints for core functions
+
+## 🚀 Deployment
+
+The application supports multiple deployment options:
+
+- **Local Development:**
+  - Uses `.env` for configuration
+  - Direct Streamlit launch
+
+- **Streamlit Cloud:**
+  - Configure secrets in dashboard
+  - Automatic deployment from GitHub
+
+- **Custom Server:**
+  - Environment variable configuration
+  - Supports reverse proxy setup
+
+## 🔒 Security
+
+- Profile enforcement prevents unauthorized modifications
+- Rate limiting protects against API abuse
+- No sensitive data stored in session state
+- Environment-aware configuration loading
+
+## 📜 License
 
 This project is for educational and demonstration purposes.  
-Contact Julien Vaughan for professional use or collaboration.
+Contact [Julien Vaughan](https://www.linkedin.com/in/julien-vaughan/) for professional use or collaboration.
+
+## 🤝 Contributing
+
+While this is a personal profile project, suggestions for improvements are welcome:
+1. Fork the repository
+2. Create a feature branch
+3. Submit a pull request
 
 ---
+
+Built with ❤️ using Streamlit and Mistral AI
