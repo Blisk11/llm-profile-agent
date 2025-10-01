@@ -6,7 +6,7 @@ from mistralai import Mistral
 from mistralai.models import SDKError
 import time
 
-LOCAL = True  # Toggle for local development vs production
+LOCAL = False  # Toggle for local development vs production
 
 # Banned keywords for profile enforcement
 BANNED_KEYWORDS = [
