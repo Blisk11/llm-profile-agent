@@ -14,6 +14,7 @@ from web.components import (
     render_language_selector,
     render_footer,
     display_response,
+    render_cv_generator,
     _labels
 )
 
@@ -112,8 +113,9 @@ def main():
 
     # Load profile and render profile card
     profile = load_profile()
-    if profile:
-        with st.sidebar:
+    with st.sidebar:
+        render_cv_generator(ask_agent)
+        if profile:
             render_profile_card(profile, lang, expanded=False)
 
     # Define callback for question submission

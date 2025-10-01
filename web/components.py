@@ -165,6 +165,30 @@ def render_conversation_history(conversation: list, lang: str):
         text=conversation_text,
         filename=f"conversation_{lang.lower()}.txt"
     )
+    
+def render_cv_generator(ask_agent):
+    if st.button("📄 Generate CV"):
+        with st.spinner("Generating CV..."):
+            cv_prompt = (
+                "Using Julien Vaughan's profile, generate a professional, concise, "
+                "chronological CV suitable for recruiters. "
+                "Format sections as: Contact, Skills, Experience (with achievements), "
+                "Education, Languages. Keep it in clean Markdown for readability."
+            )
+            cv_text = ask_agent(cv_prompt, mode="long")
+            if cv_text:
+                st.session_state.cv_text = cv_text
+                st.success("CV generated!")
+
+    if "cv_text" in st.session_state:
+        st.markdown("### Generated CV")
+        st.markdown(st.session_state.cv_text)
+        st.download_button(
+            "⬇️ Download CV",
+            data=st.session_state.cv_text,
+            file_name="Julien_Vaughan_CV.md",
+            mime="text/markdown"
+        )
 
 def render_footer():
     """Render app footer with maintainer info"""
