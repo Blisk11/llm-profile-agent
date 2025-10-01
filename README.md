@@ -1,6 +1,6 @@
 # llm-profile-agent
 
-An interactive personal AI agent that answers questions as **Julien Vaughan**, using Mistral’s API for deterministic, profile-driven responses. The agent showcases Julien's professional persona, skills, and experience, and can be queried via a Streamlit web app or command line.
+An interactive personal AI agent that answers questions as **Julien Vaughan**, using Mistral’s API for deterministic, profile-driven responses. The agent showcases Julien's professional persona, skills, and experience, and can be queried via a Streamlit web.
 
 ## Features
 
