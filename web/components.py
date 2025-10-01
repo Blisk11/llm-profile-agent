@@ -12,31 +12,45 @@ import streamlit as st
 def _labels(lang: str = "English") -> Dict[str, str]:
     return {
         "English": {
+            "title": "Julien Vaughan — Professional Profile Agent",
             "profile_title": "Profile",
             "skills": "Skills",
             "contact": "Contact",
             "view_raw": "View raw profile (JSON)",
             "download_transcript": "Download conversation",
             "no_profile": "No profile data available",
-            "agent": "Agent"
+            "agent": "Agent",
+            "free_question_header": "Ask a free question",
+            "free_question_placeholder": "Type your question here...",
+            "free_button": "Submit",
+            "example_header": "Or try one of these questions:",
+            "example_dropdown": "Select a question",
+            "spinner_thinking": "Thinking...",
+            "example_button": "Ask",
         },
         "Français": {
+            "title": "Julien Vaughan — Agent profil professionnel",
             "profile_title": "Profil",
             "skills": "Compétences",
             "contact": "Contact",
             "view_raw": "Voir le profil brut (JSON)",
             "download_transcript": "Télécharger la conversation",
             "no_profile": "Aucune donnée de profil disponible",
-            "agent": "Agent"
+            "agent": "Agent",
+            "free_question_header": "Posez une question libre",
+            "free_question_placeholder": "Tapez votre question ici...",
+            "free_button": "Soumettre",
+            "example_header": "Ou essayez l'une de ces questions :",
+            "example_dropdown": "Sélectionnez une question",
+            "example_button": "Demander",
+            "spinner_thinking": "Réflexion en cours...",
         }
     }[lang]
 
 
 def render_profile_card(profile: Optional[Dict[str, Any]], lang: str = "English", expanded: bool = True) -> None:
     """Render a compact, recruiter-friendly profile card.
-
-    - Shows name, title, short summary, top skills and contact info.
-    - Avoids dumping raw JSON unless the user explicitly asks.
+    Optimized for sidebar display with single column layout.
     """
     L = _labels(lang)
 
@@ -44,58 +58,22 @@ def render_profile_card(profile: Optional[Dict[str, Any]], lang: str = "English"
         st.info(L["no_profile"])
         return
 
-    # Main card
+    # Main card in a single column
     with st.container():
-        cols = st.columns([1, 3])
-        left, right = cols
 
-        # Left: optional photo
-        photo = profile.get("photo") or profile.get("avatar_url")
-        if photo:
-            try:
-                left.image(photo, width=120)
-            except Exception:
-                left.empty()
-
-        # Right: name, title, summary
-        name = profile.get("name") or profile.get("full_name") or ""
-        title = profile.get("title") or profile.get("role") or ""
-        summary = profile.get("summary") or profile.get("about") or ""
-
-        right.markdown(f"#### {name}")
-        if title:
-            right.markdown(f"**{title}**")
-        if summary:
-            right.write(summary)
-
-        # Skills
-        skills: List[str] = profile.get("skills") or profile.get("tech_stack") or []
-        if skills:
-            right.markdown(f"**{L['skills']}:** {', '.join(skills[:10])}")
-
-        # Contact
+        # Contact info with better spacing
         contact = profile.get("contact") or {}
-        contact_lines = []
-        if isinstance(contact, dict):
+        if isinstance(contact, dict) and any(contact.values()):
+            st.markdown("---")
+            st.markdown(f"**{L['contact']}**")
             if contact.get("email"):
-                contact_lines.append(contact.get("email"))
+                st.markdown(f"📧 {contact['email']}")
             if contact.get("phone"):
-                contact_lines.append(contact.get("phone"))
+                st.markdown(f"📱 {contact['phone']}")
             if contact.get("linkedin"):
-                contact_lines.append(contact.get("linkedin"))
-        else:
-            # fallback if contact is a string
-            if contact:
-                contact_lines.append(str(contact))
-
-        if contact_lines:
-            right.markdown(f"**{L['contact']}:**  ")
-            for c in contact_lines:
-                right.write(f"- {c}")
-
-    # optional expander to show raw JSON
-    with st.expander(L["view_raw"], expanded=False):
-        st.json(profile)
+                st.markdown(f"🔗 [{L.get('linkedin', 'LinkedIn')}]({contact['linkedin']})")
+            if contact.get("address"):
+                st.markdown(f"📍 {contact['address']}")
 
 
 def display_response(response: str, agent_label: Optional[str] = None, as_markdown: bool = True, expanded: bool = True) -> None:
@@ -139,3 +117,60 @@ def load_profile_from_path(path: str) -> Optional[Dict[str, Any]]:
         return json.loads(p.read_text(encoding="utf-8"))
     except Exception:
         return None
+
+def render_language_selector() -> tuple[str, str]:
+    """Render language and mode selection in sidebar"""
+    lang = st.sidebar.radio("Langue / Language", ["Français", "English"])
+    mode_options = ["Court", "Long"] if lang == "Français" else ["Short", "Long"]
+    mode_label = "Mode de réponse" if lang == "Français" else "Answer Mode"
+    mode = st.sidebar.radio(mode_label, mode_options, index=0)
+    mode_value = "short" if mode in ["Short", "Court"] else "long"
+    return lang, mode_value
+
+def render_question_input(labels: dict, on_submit) -> str:
+    """Render the free question input area"""
+    st.markdown(labels["free_question_header"])
+    question = st.text_area(
+        labels["free_question_placeholder"],
+        key="free_question_input",
+        height=300
+    )
+    if st.button(labels["free_button"], key="free"):
+        if question.strip():
+            return on_submit(question)
+    return None
+
+def render_example_questions(labels: dict, questions: dict, lang: str, on_submit) -> str:
+    """Render example questions selection"""
+    st.markdown(labels["example_header"])
+    selected = st.radio(
+        labels["example_dropdown"],
+        questions[lang],
+        key="example_questions"
+    )
+    if st.button(labels["example_button"], key="example"):
+        return on_submit(selected)
+    return None
+
+def render_conversation_history(conversation: list, lang: str):
+    """Render conversation history and download button"""
+    if not conversation:
+        return
+        
+    conversation_text = "\n\n".join([
+        f"Q: {turn['question']}\nA: {turn['response']}"
+        for turn in conversation
+    ])
+    transcript_download_button(
+        text=conversation_text,
+        filename=f"conversation_{lang.lower()}.txt"
+    )
+
+def render_footer():
+    """Render app footer with maintainer info"""
+    st.markdown("---")
+    st.markdown(
+        "🤖 Built with Streamlit + Mistral AI | "
+        "[GitHub](https://github.com/Blisk11/llm-profile-agent) | "
+        "Maintainer: [Julien Vaughan](https://www.linkedin.com/in/j.vaughan)"
+    )

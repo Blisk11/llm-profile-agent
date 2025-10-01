@@ -6,7 +6,20 @@ from mistralai import Mistral
 from mistralai.models import SDKError
 import time
 
-LOCAL = False  # Toggle for local development vs production
+# Determine environment dynamically
+LOCAL = os.environ.get('STREAMLIT_DEPLOYMENT') is None
+
+# Alternative approach using try/except
+def is_local():
+    try:
+        import streamlit as st
+        # Check if we can access Streamlit's secrets
+        _ = st.secrets
+        return False
+    except:
+        return True
+
+LOCAL = is_local()
 
 # Banned keywords for profile enforcement
 BANNED_KEYWORDS = [

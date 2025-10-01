@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 import streamlit as st
 
-# make repo root importable
+# Make repo root importable
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
@@ -10,103 +10,157 @@ if str(ROOT) not in sys.path:
 from src.agent import ask_agent
 from src.profile_loader import load_profile
 from web.components import (
-    render_profile_card, 
-    display_response, 
-    transcript_download_button, 
-    load_profile_from_path
+    render_profile_card,
+    render_language_selector,
+    render_footer,
+    display_response,
+    _labels
 )
 
-# Define labels/translations
-labels = {
-    "English": {
-        "title": "Julien Vaughan — Professional Profile Agent",
-        "free_question_header": "Ask me anything",
-        "free_question_placeholder": "Enter your question here...",
-        "free_button": "Ask",
-        "example_header": "Or try these example questions:",
-        "example_dropdown": "Select a question:",
-        "example_button": "Ask selected",
-        "answer_label": "Answer",
-        "spinner_thinking": "Thinking...",
-        "agent": "Julien"  # Added agent label
-    },
-    "Français": {
-        "title": "Julien Vaughan — Agent profil professionnel",
-        "free_question_header": "Posez-moi une question",
-        "free_question_placeholder": "Entrez votre question ici...",
-        "free_button": "Demander",
-        "example_header": "Ou essayez ces exemples :",
-        "example_dropdown": "Sélectionnez une question :",
-        "example_button": "Demander",
-        "answer_label": "Réponse",
-        "spinner_thinking": "Réflexion en cours...",
-        "agent": "Julien"  # Added agent label
-    }
+# Example questions database
+EXAMPLE_QUESTIONS = {
+    "English": [
+        "How have you used data analytics to influence a key business decision?",
+        "Can you describe a project where you optimized a process or workflow?",
+        "How do you approach solving complex problems that combine technical and business challenges?",
+        "What demonstrates your entrepreneurial mindset in past professional projects?",
+        "Can you show an example of applying AI/ML to generate actionable business insights?"
+    ],
+    "Français": [
+        "Comment avez-vous utilisé l'analyse de données pour influencer une décision clé de l'entreprise ?",
+        "Pouvez-vous décrire un projet où vous avez optimisé un processus ou un flux de travail ?",
+        "Comment abordez-vous la résolution de problèmes complexes combinant défis techniques et business ?",
+        "Qu'est-ce qui démontre votre esprit entrepreneurial dans vos projets professionnels passés ?",
+        "Pouvez-vous donner un exemple d'application de l'IA/ML pour générer des insights exploitables ?"
+    ]
 }
 
-# --- Sidebar: Language & Answer Mode ---
-with st.sidebar:
-    lang = st.radio("Langue / Language", ["Français", "English"])
-    mode_options = ["Court", "Long"] if lang == "Français" else ["Short", "Long"]
-    mode_label = "Mode de réponse" if lang == "Français" else "Answer Mode"
-    mode = st.radio(mode_label, mode_options, index=0)
-    mode_value = "short" if mode in ["Short", "Court"] else "long"
+# Initialize session state
+if "history" not in st.session_state:
+    st.session_state.history = []
 
-# --- Streamlit page config ---
-st.set_page_config(
-    page_title=labels[lang]["title"],
-    layout="wide",
-    initial_sidebar_state="expanded"  # Changed from "collapsed" to "expanded"
-)
+def render_question_form(labels: dict, on_submit) -> str:
+    """Render the question input form"""
+    with st.form(key="question_form"):
+        question = st.text_area(
+            labels["free_question_placeholder"],
+            key="free_question_input",
+            height=150
+        )
+        submit_button = st.form_submit_button(labels["free_button"])
+        
+        if submit_button and question.strip():
+            return on_submit(question)
+    return None
 
-# Get localized labels
-L = labels[lang]
-
-# --- Page Layout ---
-st.markdown(f"### {L['title']}")  # Changed from st.title() to st.markdown() with h3
-st.markdown("---")
-col1, col2 = st.columns([0.7, 2])
-
-response = None  # Store response here
-
-# --- Free Question Column ---
-with col1:
-    st.markdown(L["free_question_header"])
-    free_question = st.text_area(L["free_question_placeholder"], height=200)
-    if st.button(L["free_button"], key="free"):
-        if free_question.strip():
-            with st.spinner(L["spinner_thinking"]):
-                response = ask_agent(free_question, mode=mode_value)
-
-# --- Example Question Column ---
-with col2:
-    st.markdown(L["example_header"])
-    example_questions = {
-        "English": [
-            "How have you used data analytics to influence a key business decision?",
-            "Can you describe a project where you optimized a process or workflow?",
-            "How do you approach solving complex problems that combine technical and business challenges?",
-            "What demonstrates your entrepreneurial mindset in past professional projects?",
-            "Can you show an example of applying AI/ML to generate actionable business insights?"
-        ],
-        "Français": [
-            "Comment avez-vous utilisé l'analyse de données pour influencer une décision clé de l'entreprise ?",
-            "Pouvez-vous décrire un projet où vous avez optimisé un processus ou un flux de travail ?",
-            "Comment abordez-vous la résolution de problèmes complexes combinant défis techniques et business ?",
-            "Qu'est-ce qui démontre votre esprit entrepreneurial dans vos projets professionnels passés ?",
-            "Pouvez-vous donner un exemple d'application de l'IA/ML pour générer des insights exploitables ?"
-        ]
-    }
-    selected_question = st.radio(L["example_dropdown"], example_questions[lang])
-    if st.button(L["example_button"], key="example"):
-        with st.spinner(L["spinner_thinking"]):
-            response = ask_agent(selected_question, mode=mode_value)
-
-# --- Display Response ---
-if response:
-    display_response(
-        response,
-        agent_label=L["agent"],
-        as_markdown=True,
-        expanded=True
+def render_example_questions(labels: dict, questions: dict, lang: str, on_submit) -> str:
+    """Render example questions with radio buttons"""
+    st.markdown(labels["example_header"])
+    
+    # Use radio buttons for example questions
+    selected = st.radio(
+        labels["example_dropdown"],
+        questions[lang],
+        key="example_questions",
+        label_visibility="collapsed"  # Hides the label since we use markdown header
     )
+    
+    if st.button(labels["example_button"], key="example"):
+        return on_submit(selected)
+    return None
+
+def render_conversation_history(history: list, labels: dict):
+    """Render conversation history chronologically"""
+    if not history:
+        return
+    
+    st.markdown("### Previous Conversations")
+    
+    for i, entry in enumerate(history):
+        with st.expander(f"Q{i+1}: {entry['question'][:100]}...", expanded=False):
+            st.markdown("**Question:**")
+            st.markdown(entry['question'])
+            st.markdown("**Response:**")
+            st.markdown(entry['response'])
+            st.markdown(f"*Mode: {entry['mode']} | Language: {entry['lang']}*")
+    
+    # Add download button
+    conversation_text = "\n\n".join([
+        f"Q: {turn['question']}\nA: {turn['response']}"
+        for turn in history
+    ])
+    st.download_button(
+        labels["download_transcript"],
+        data=conversation_text,
+        file_name="conversation.txt",
+        mime="text/plain"
+    )
+
+def main():
+    # Language and mode selection
+    lang, mode = render_language_selector()
+    
+    # Get localized labels
+    labels = _labels(lang)
+    
+    # Page configuration
+    st.set_page_config(
+        page_title=f"Julien Vaughan — {labels['title']}",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+
+    # Load profile and render profile card
+    profile = load_profile()
+    if profile:
+        with st.sidebar:
+            render_profile_card(profile, lang, expanded=False)
+
+    # Define callback for question submission
+    def handle_question(question: str) -> str:
+        with st.spinner(labels["spinner_thinking"]):
+            response = ask_agent(question, mode=mode)
+            if response:
+                # Store in session history
+                st.session_state.history.append({
+                    "question": question,
+                    "response": response,
+                    "mode": mode,
+                    "lang": lang,
+                    "timestamp": st.session_state.get("_current_time", "")
+                })
+            return response
+
+    # Main layout
+    st.markdown(f"### {labels['title']}")
+    st.markdown("---")
+    
+    # Two-column layout for questions
+    col1, col2 = st.columns([1, 2.5])
+    
+    with col1:
+        st.markdown(labels["free_question_header"])
+        response = render_question_form(labels, handle_question)
+    
+    with col2:
+        example_response = render_example_questions(
+            labels,
+            EXAMPLE_QUESTIONS,
+            lang,
+            handle_question
+        )
+    
+    # Display current response
+    response = response or example_response
+    if response:
+        st.markdown("### Current Response")
+        display_response(response, agent_label=labels["agent"], as_markdown=True)
+    
+    # Display conversation history
+    render_conversation_history(st.session_state.history, labels)
+    
+    # Footer
+    render_footer()
+
+if __name__ == "__main__":
+    main()
