@@ -1,0 +1,10 @@
+pandas
+langdetect
+mistralai>=0.1.8
+python-dotenv
+streamlit
+
+[dev]
+pytest
+black
+flake8

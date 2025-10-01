@@ -4,32 +4,27 @@ import time
 from mistralai.models import SDKError
 
 def enforce_profile(user_input: str) -> str:
-    """
-    Check if user input tries to override identity. 
-    Reject if it contains banned keywords.
-    """
+    """Check if user input tries to override identity"""
     lower_input = user_input.lower()
     if any(word in lower_input for word in BANNED_KEYWORDS):
         return "Cannot comply. Instruction violates the enforced user profile."
     return user_input
 
 def query_model(prompt: str, mode: str = "short") -> str:
-    """
-    Query the Mistral chat completion API with deterministic settings,
-    enforcing Julien Vaughan's profile.
-    
-    mode: "short" or "long" - adjusts verbosity of the response.
-    """
+    """Query Mistral API with profile enforcement"""
     safe_prompt = enforce_profile(prompt)
     
     # Add mode instruction
-    if mode == "short":
-        safe_prompt += "\n\nPlease answer concisely in 2-3 sentences."
-    elif mode == "long":
-        safe_prompt += "\n\nPlease provide a detailed and thorough answer, with examples if applicable."
-    else:
+    mode_instructions = {
+        "short": "\n\nPlease answer concisely in 2-3 sentences.",
+        "long": "\n\nPlease provide a detailed and thorough answer, with examples if applicable."
+    }
+    if mode not in mode_instructions:
         raise ValueError("Invalid mode. Choose 'short' or 'long'.")
+    
+    safe_prompt += mode_instructions[mode]
 
+    # Implement exponential backoff for retries
     max_retries = 5
     backoff = 2  # seconds
 
@@ -50,5 +45,4 @@ def query_model(prompt: str, mode: str = "short") -> str:
                 print(f"Rate limit hit. Retrying in {wait_time} seconds...")
                 time.sleep(wait_time)
                 continue
-            else:
-                raise RuntimeError("API overloaded. Please try again later.") from e
+            raise RuntimeError("API overloaded. Please try again later.") from e

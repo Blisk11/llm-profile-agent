@@ -1,15 +1,48 @@
 import sys
-import os
+from pathlib import Path
+import streamlit as st
 
-# Ensure src is on the path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# make repo root importable
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))
 
 from src.agent import ask_agent
-import streamlit as st
-from web.components import display_response
+from src.profile_loader import load_profile
+from web.components import (
+    render_profile_card, 
+    display_response, 
+    transcript_download_button, 
+    load_profile_from_path
+)
 
-# --- Streamlit page config ---
-st.set_page_config(page_title="Julien Vaughan Personal Agent", layout="wide")
+# Define labels/translations
+labels = {
+    "English": {
+        "title": "Julien Vaughan — Professional Profile Agent",
+        "free_question_header": "Ask me anything",
+        "free_question_placeholder": "Enter your question here...",
+        "free_button": "Ask",
+        "example_header": "Or try these example questions:",
+        "example_dropdown": "Select a question:",
+        "example_button": "Ask selected",
+        "answer_label": "Answer",
+        "spinner_thinking": "Thinking...",
+        "agent": "Julien"  # Added agent label
+    },
+    "Français": {
+        "title": "Julien Vaughan — Agent profil professionnel",
+        "free_question_header": "Posez-moi une question",
+        "free_question_placeholder": "Entrez votre question ici...",
+        "free_button": "Demander",
+        "example_header": "Ou essayez ces exemples :",
+        "example_dropdown": "Sélectionnez une question :",
+        "example_button": "Demander",
+        "answer_label": "Réponse",
+        "spinner_thinking": "Réflexion en cours...",
+        "agent": "Julien"  # Added agent label
+    }
+}
 
 # --- Sidebar: Language & Answer Mode ---
 with st.sidebar:
@@ -19,36 +52,18 @@ with st.sidebar:
     mode = st.radio(mode_label, mode_options, index=0)
     mode_value = "short" if mode in ["Short", "Court"] else "long"
 
-# --- Bilingual Labels ---
-labels = {
-    "English": {
-        "title": "Julien Vaughan Personal Agent",
-        "free_question_header": "### Free Question",
-        "free_question_placeholder": "Type your question here",
-        "free_button": "Submit Free Question",
-        "example_header": "### Example Questions",
-        "example_dropdown": "Select an example question:",
-        "example_button": "Ask Selected Question",
-        "answer_label": "Agent Response",
-        "spinner_thinking": "Thinking..."
-    },
-    "Français": {
-        "title": "Agent Personnel de Julien Vaughan",
-        "free_question_header": "### Question Libre",
-        "free_question_placeholder": "Tapez votre question ici",
-        "free_button": "Poser la question",
-        "example_header": "### Questions d'exemple",
-        "example_dropdown": "Sélectionnez une question d'exemple :",
-        "example_button": "Poser la question sélectionnée",
-        "answer_label": "Réponse",
-        "spinner_thinking": "Réflexion en cours..."
-    }
-}
+# --- Streamlit page config ---
+st.set_page_config(
+    page_title=labels[lang]["title"],
+    layout="wide",
+    initial_sidebar_state="expanded"  # Changed from "collapsed" to "expanded"
+)
 
+# Get localized labels
 L = labels[lang]
 
 # --- Page Layout ---
-st.title(L["title"])
+st.markdown(f"### {L['title']}")  # Changed from st.title() to st.markdown() with h3
 st.markdown("---")
 col1, col2 = st.columns([0.7, 2])
 
@@ -89,5 +104,9 @@ with col2:
 
 # --- Display Response ---
 if response:
-    st.markdown("---")
-    display_response(response, agent_label=L["answer_label"], expanded=True)
+    display_response(
+        response,
+        agent_label=L["agent"],
+        as_markdown=True,
+        expanded=True
+    )

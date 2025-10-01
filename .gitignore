@@ -12,7 +12,7 @@ __pycache__/
 
 # Sensitive profile
 data/*
-TEST/*
+_TEST/*
 
 # Except profile.json
 !data/profile.json

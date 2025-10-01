@@ -1,0 +1,82 @@
+Metadata-Version: 2.4
+Name: llm-profile-agent
+Version: 0.1.0
+Summary: Interactive personal AI agent to showcase Julien Vaughan's professional persona.
+Author: Julien Vaughan
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: langdetect
+Requires-Dist: mistralai>=0.1.8
+Requires-Dist: python-dotenv
+Requires-Dist: streamlit
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+
+# llm-profile-agent
+
+An interactive personal AI agent that answers questions as **Julien Vaughan**, using Mistral’s API for deterministic, profile-driven responses. The agent showcases Julien's professional persona, skills, and experience, and can be queried via a Streamlit web app or command line.
+
+## Features
+
+- **Profile-based answers:** All responses are strictly based on `profile.json` (not hallucinated).
+- **Language detection:** Answers in English or French, matching the question's language.
+- **Short/Long mode:** Choose concise or detailed answers.
+- **Streamlit UI:** Ask free-form questions or select from curated examples.
+- **Safe API usage:** Deterministic responses, rate-limit handling, and identity enforcement.
+
+## Project Structure
+
+```
+llm-profile-agent/
+│── data/
+│   └── profile.json                # Julien's professional profile
+│── src/
+│   ├── __init__.py                 
+│   ├── agent.py                    # Main agent logic
+│   ├── llm_wrapper.py              # Mistral API interface and profile enforcement
+│   ├── utils.py                    # Helper functions
+│   ├── profile_loader.py           # Profile and api_key loader
+│── web/
+│   ├── app.py                      # Streamlit web app
+│   └── components.py               # UI components            
+│── pyproject.toml                  # Dependencies and build config
+│── .gitignore                      # Excludes sensitive and build files
+│── README.md                       # This file
+```
+
+## Quickstart
+
+1. **Install dependencies:**
+   ```
+   pip install -e .
+   ```
+
+2. **Add your Mistral API key:**
+   - Create a `.env` file in the project root:
+     ```
+     MISTRAL_API_KEY=your_api_key_here
+     ```
+
+3. **Run the Streamlit app:**
+   ```
+   streamlit run web/app.py
+   ```
+
+4. **Or use the CLI:**
+   ```
+   python main.py
+   ```
+
+## Notes
+
+- **API limits:** The agent automatically retries if the Mistral API is overloaded.
+
+## License
+
+This project is for educational and demonstration purposes.  
+Contact Julien Vaughan for professional use or collaboration.
+
+---
