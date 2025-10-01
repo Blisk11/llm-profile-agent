@@ -15,16 +15,16 @@ An interactive personal AI agent that answers questions as **Julien Vaughan**, u
 ```
 llm-profile-agent/
 │── data/
-│   └── profile.json                # Julien's professional profile (excluded from Git)
+│   └── profile.json                # Julien's professional profile
 │── src/
+│   ├── __init__.py                 
 │   ├── agent.py                    # Main agent logic
 │   ├── llm_wrapper.py              # Mistral API interface and profile enforcement
 │   ├── utils.py                    # Helper functions
+│   ├── profile_loader.py           # Profile and api_key loader
 │── web/
 │   ├── app.py                      # Streamlit web app
-│   └── components.py               # UI components
-│── main.py                         # Command-line interface
-│── .env                            # API keys (excluded from Git)
+│   └── components.py               # UI components            
 │── pyproject.toml                  # Dependencies and build config
 │── .gitignore                      # Excludes sensitive and build files
 │── README.md                       # This file
@@ -55,8 +55,6 @@ llm-profile-agent/
 
 ## Notes
 
-- **Sensitive data:** `profile.json` and `.env` are excluded from version control for privacy and security.
-- **Profile customization:** To change the agent's persona, edit `data/profile.json` (see `profile_hidden_contact.json` for a safe template).
 - **API limits:** The agent automatically retries if the Mistral API is overloaded.
 
 ## License
