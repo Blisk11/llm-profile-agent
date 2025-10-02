@@ -12,49 +12,48 @@
     "age": "36",
     "role": "Business Analyst / Data Scientist",
     "skills": [
-        "Python", "SQL", "DAX", "Machine Learning", "LLM Agent Development",
-        "Power BI", "Data Wrangling", "Automation", "Excel (Power Query)",
-        "Statistical Analysis", "Bilingual Communication",
+        "Python", "SQL", "DAX", "Scikit-learn", "LLM Agent Development",
+        "Power BI", "Data cleaning and structuring expert", "Automation", "Excel (Power Query)",
+        "Statistical Analysis", "Bilingual Communication", "Visual Basic",
         "Business Intelligence", "Data Visualization",
         "Predictive Modeling", "Process Optimization", "Management"
     ],
     "traits": {
-    "mindset": {
-        "entrepreneurial": "Founded IFM’s Global BI Community adopted worldwide",
-        "innovative": "Created Top Prospect Model ranking 100k companies, reshaping sales strategy",
-        "strategic": "Shifted C-level focus to unpriced quotes, influencing commercial direction",
-        "relentless": "Dog-on-a-bone persistence: once a problem is identified, I don’t let go until it’s solved",
-        "intuitive": "Guided by data but also by intuition and pattern recognition beyond numbers",
-        "human_centered": "See the humanity behind decisions; respect and care for people while driving outcomes"
-    },
-    "cognitive": {
-        "critical_thinking": "Built credit approval model optimizing for ROI, not accuracy",
-        "pattern_recognition": "Identified low-margin inefficiencies with ML clustering across EMEA",
-        "learning_speed": "Self-taught transition from hospitality/logistics to data science leader in 3 years"
-    },
-    "soft_skills": {
-        "leadership": "Managed analysts and founded global developer community",
-        "communication": "Delivered dashboards and models adopted by executives company-wide",
-        "cultural_adaptability": "Worked across 50+ countries, trilingual professional experience",
-        "respectful": "Approach colleagues and clients with genuine care (bienveillant), earning trust across cultures",
-        "empathetic": "Balance analytical rigor with understanding of human motivations and needs"
-    },
-    "work_habits": {
-        "independent": "Built portfolio projects (credit model, Streamlit apps) outside corporate scope",
-        "structured": "Designed clean transactional databases to support consistent pricing analysis",
-        "decision_making_style": "Data-driven, validated by measurable business outcomes"
-    },
-    "meta": {
-        "unique_edge": [
-        "Rare hybrid: Business Analyst + Data Scientist + BI Architect",
-        "Proven record of tools that shift executive strategy",
-        "Track record of building impact from zero: self-built career path, self-made projects",
-        "Relentless problem-solver who still sees the human in the data",
-        "Combines intuition, empathy, and analytics for decisions that work in real business contexts"
-        ],
-        "preferred_work_style": ["team", "solo", "remote", "fast_paced"],
-        "motivation_drivers": ["impact", "challenge", "learning", "growth"]
-    }
+        "mindset": {
+            "entrepreneurial": "Founded IFM’s Global BI Community adopted worldwide",
+            "innovative": "Created Top Prospect Model ranking 100k companies, reshaping sales strategy",
+            "relentless": "Dog-on-a-bone persistence: once a problem is identified, I don’t let go until it’s solved",
+            "intuitive": "Guided by data but also by intuition and pattern recognition beyond numbers",
+            "human_centered": "See the humanity behind decisions; respect and care for people while driving outcomes"
+        },
+        "cognitive": {
+            "critical_thinking": "Built credit approval model optimizing for ROI, not accuracy",
+            "pattern_recognition": "Identified low-margin inefficiencies with ML clustering across EMEA",
+            "learning_speed": "Self-taught transition from hospitality/logistics to data science leader in 3 years"
+        },
+        "soft_skills": {
+            "leadership": "Managed analysts and founded global developer community",
+            "communication": "Delivered dashboards and models adopted by executives company-wide",
+            "cultural_adaptability": "Worked across 50+ countries, trilingual professional experience",
+            "respectful": "Approach colleagues and clients with genuine care (bienveillant), earning trust across cultures",
+            "empathetic": "Balance analytical rigor with understanding of human motivations and needs"
+        },
+        "work_habits": {
+            "independent": "Built portfolio projects (credit model, Streamlit apps) outside corporate scope",
+            "structured": "Designed clean transactional databases to support consistent pricing analysis",
+            "decision_making_style": "Data-driven, validated by measurable business outcomes"
+        },
+        "meta": {
+            "unique_edge": [
+            "Rare hybrid: Business Analyst + Data Scientist + BI Architect",
+            "Proven record of tools that shift executive strategy",
+            "Track record of building impact from zero: self-built career path, self-made projects",
+            "Relentless problem-solver who still sees the human in the data",
+            "Combines intuition, empathy, and analytics for decisions that work in real business contexts"
+            ],
+            "preferred_work_style": ["team", "solo", "remote", "fast_paced"],
+            "motivation_drivers": ["impact", "challenge", "learning", "growth"]
+        }
     },
     "experience": [
         {

@@ -27,6 +27,7 @@ def _labels(lang: str = "English") -> Dict[str, str]:
             "example_dropdown": "Select a question",
             "spinner_thinking": "Thinking...",
             "example_button": "Ask",
+            "generate_cv": "📄 Generate CV"
         },
         "Français": {
             "title": "Julien Vaughan — Agent profil professionnel",
@@ -42,8 +43,9 @@ def _labels(lang: str = "English") -> Dict[str, str]:
             "free_button": "Soumettre",
             "example_header": "Ou essayez l'une de ces questions :",
             "example_dropdown": "Sélectionnez une question",
-            "example_button": "Demander",
             "spinner_thinking": "Réflexion en cours...",
+            "example_button": "Demander",
+            "generate_cv": "📄 Générer le CV"
         }
     }[lang]
 
@@ -166,15 +168,30 @@ def render_conversation_history(conversation: list, lang: str):
         filename=f"conversation_{lang.lower()}.txt"
     )
     
-def render_cv_generator(ask_agent):
-    if st.button("📄 Generate CV"):
-        with st.spinner("Generating CV..."):
+def render_cv_generator(labels: dict, ask_agent):
+    # Build extra context from Q&A history if available
+    history_text = ""
+    if "history" in st.session_state and st.session_state.history:
+        qa_pairs = [
+            f"Q: {turn['question']}\nA: {turn['response']}"
+            for turn in st.session_state.history
+        ]
+        history_text = "\n\n".join(qa_pairs)
+
+    if st.button(labels["generate_cv"], key="generate_cv"):
+        with st.spinner(labels["spinner_thinking"]):
             cv_prompt = (
-                "Using Julien Vaughan's profile, generate a professional, concise, "
-                "chronological CV suitable for recruiters. "
+                "Using Julien Vaughan's profile, generate a professional, "
+                "concise, chronological CV suitable for recruiters. "
                 "Format sections as: Contact, Skills, Experience (with achievements), "
-                "Education, Languages. Keep it in clean Markdown for readability."
+                "Education, Languages. Keep it in clean Markdown.\n\n"
             )
+            if history_text:
+                cv_prompt += (
+                    "Here are example questions and responses from recent interactions. "
+                    "Incorporate relevant elements where appropriate:\n\n"
+                    f"{history_text}"
+                )
             cv_text = ask_agent(cv_prompt, mode="long")
             if cv_text:
                 st.session_state.cv_text = cv_text
