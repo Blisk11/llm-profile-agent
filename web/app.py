@@ -21,20 +21,25 @@ from web.components import (
 # Example questions database
 EXAMPLE_QUESTIONS = {
     "English": [
-        "How have you used data analytics to influence a key business decision?",
-        "Can you describe a project where you optimized a process or workflow?",
-        "How do you approach solving complex problems that combine technical and business challenges?",
-        "What demonstrates your entrepreneurial mindset in past professional projects?",
-        "Can you show an example of applying AI/ML to generate actionable business insights?"
+        "Can you describe how you built the Top Prospect Model at IFM and the measurable impact it had?",
+        "How did you enrich CRM data with public sources and what business value did it unlock?",
+        "What is your Profit Threshold Credit Approval Model and how does it differ from traditional ML approaches?",
+        "How have you automated processes in your roles (e.g., pricing, reporting, marketing) and what time savings did you achieve?",
+        "Can you explain the Personal AI Agent project and how it demonstrates your skills in LLM integration?",
+        "What innovative projects have you done outside of work, such as healthcare or education-related automation?",
+        "How have you influenced C-level decision-making through analytics and dashboards?"
     ],
     "Français": [
-        "Comment avez-vous utilisé l'analyse de données pour influencer une décision clé de l'entreprise ?",
-        "Pouvez-vous décrire un projet où vous avez optimisé un processus ou un flux de travail ?",
-        "Comment abordez-vous la résolution de problèmes complexes combinant défis techniques et business ?",
-        "Qu'est-ce qui démontre votre esprit entrepreneurial dans vos projets professionnels passés ?",
-        "Pouvez-vous donner un exemple d'application de l'IA/ML pour générer des insights exploitables ?"
+        "Pouvez-vous décrire comment vous avez construit le modèle de prospection chez IFM et son impact mesurable ?",
+        "Comment avez-vous enrichi le CRM avec des données publiques et quelle valeur business cela a-t-il généré ?",
+        "Qu’est-ce que votre modèle d’approbation de crédit basé sur le seuil de rentabilité et en quoi diffère-t-il des approches classiques ?",
+        "Comment avez-vous automatisé des processus (prix, reporting, marketing) et quels gains de temps concrets avez-vous obtenus ?",
+        "Pouvez-vous expliquer le projet Agent Personnel IA et en quoi il démontre vos compétences en intégration LLM ?",
+        "Quels projets innovants avez-vous réalisés en dehors du travail, comme l’automatisation dans la santé ou l’éducation ?",
+        "Comment vos analyses ont-elles influencé des décisions stratégiques au niveau de la direction générale ?"
     ]
 }
+
 
 # Initialize session state
 if "history" not in st.session_state:
@@ -46,7 +51,7 @@ def render_question_form(labels: dict, on_submit) -> str:
         question = st.text_area(
             labels["free_question_placeholder"],
             key="free_question_input",
-            height=150
+            height=200
         )
         submit_button = st.form_submit_button(labels["free_button"])
         
