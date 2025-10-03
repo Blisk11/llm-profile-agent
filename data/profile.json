@@ -400,5 +400,19 @@
         "Il montre un grand intérêt à chercher la solution optimale à chaque problématique, dans le cadre de ses missions mais aussi de celles de l’équipe qui l’entoure."
         ]
     }
-]
+    ],
+    "Competitive Achievements & Analytical Skills": [
+    {
+        "achievement": "StarCraft II Master rank",
+        "description": "Demonstrates advanced strategic planning, rapid decision-making, and adaptive problem-solving under high-pressure conditions."
+    },
+    {
+        "achievement": "Bourstad Investment Simulation 2007",
+        "description": "Ranked 27th out of 1,500 participants with a 60% annualized return on initial capital. Achieved this by strategically leveraging available platform rules to maximize both long and short positions, optimizing cash flow, and reallocating capital dynamically—demonstrating innovative, high-performance investment thinking within the rules."
+    },
+    {
+        "achievement": "Chess Tournament Performance",
+        "description": "Finished 13th overall and 1st among unranked players in [tournament](https://www.echecs.asso.fr/Resultats.aspx?URL=Tournois/Id/66252/66252&Action=Cl), with a performance rating of 1708, highlighting analytical thinking and tactical execution."
+    }
+    ]
 }
