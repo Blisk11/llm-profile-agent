@@ -168,8 +168,11 @@ def render_conversation_history(conversation: list, lang: str):
         filename=f"conversation_{lang.lower()}.txt"
     )
     
+
 def render_cv_generator(labels: dict, ask_agent):
-    # Build extra context from Q&A history if available
+    """Render a button to generate a CV and show/download it once generated."""
+
+    # Build extra context from conversation history
     history_text = ""
     if "history" in st.session_state and st.session_state.history:
         qa_pairs = [
@@ -178,6 +181,7 @@ def render_cv_generator(labels: dict, ask_agent):
         ]
         history_text = "\n\n".join(qa_pairs)
 
+    # Button trigger
     if st.button(labels["generate_cv"], key="generate_cv"):
         with st.spinner(labels["spinner_thinking"]):
             cv_prompt = (
@@ -195,13 +199,14 @@ def render_cv_generator(labels: dict, ask_agent):
             cv_text = ask_agent(cv_prompt, mode="long")
             if cv_text:
                 st.session_state.cv_text = cv_text
-                st.success("CV generated!")
+                st.success(labels["generate_cv"] + " ✅")
 
+    # Display generated CV
     if "cv_text" in st.session_state:
-        st.markdown("### Generated CV")
+        st.markdown("### " + labels["generate_cv"])
         st.markdown(st.session_state.cv_text)
         st.download_button(
-            "⬇️ Download CV",
+            "⬇️ " + labels["generate_cv"],
             data=st.session_state.cv_text,
             file_name="Julien_Vaughan_CV.md",
             mime="text/markdown"
