@@ -11,6 +11,7 @@ from src.agent import ask_agent
 from src.profile_loader import load_profile
 from web.components import (
     render_profile_card,
+    render_title,
     render_language_selector,
     render_footer,
     display_response,
@@ -116,19 +117,21 @@ def main():
         initial_sidebar_state="expanded"
     )
 
-    # Load profile and render profile card
+    # Render title + description (introduction)
+    render_title(labels)  # this should include the title
+
+    # Load profile and sidebar
     profile = load_profile()
     with st.sidebar:
         render_cv_generator(labels, ask_agent)
         if profile:
             render_profile_card(profile, lang, expanded=False)
 
-    # Define callback for question submission
+    # Callback for question submission
     def handle_question(question: str) -> str:
         with st.spinner(labels["spinner_thinking"]):
             response = ask_agent(question, mode=mode)
             if response:
-                # Store in session history
                 st.session_state.history.append({
                     "question": question,
                     "response": response,
@@ -138,11 +141,7 @@ def main():
                 })
             return response
 
-    # Main layout
-    st.markdown(f"### {labels['title']}")
-    st.markdown("---")
-    
-    # Two-column layout for questions
+    # Main layout (remove redundant title)
     col1, col2 = st.columns([1, 2.5])
     
     with col1:
@@ -163,11 +162,12 @@ def main():
         st.markdown("### Current Response")
         display_response(response, agent_label=labels["agent"], as_markdown=True)
     
-    # Display conversation history
+    # Conversation history
     render_conversation_history(st.session_state.history, labels)
     
     # Footer
     render_footer()
+
 
 if __name__ == "__main__":
     main()

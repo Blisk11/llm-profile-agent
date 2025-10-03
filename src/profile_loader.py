@@ -10,14 +10,12 @@ import time
 LOCAL = os.environ.get('STREAMLIT_DEPLOYMENT') is None
 
 # Alternative approach using try/except
-def is_local():
-    try:
-        import streamlit as st
-        # Check if we can access Streamlit's secrets
-        _ = st.secrets
-        return False
-    except:
-        return True
+def is_local() -> bool:
+    """
+    Return True if running locally (not deployed to Streamlit Cloud).
+    Uses the STREAMLIT_DEPLOYMENT env variable, which is only set on Streamlit Cloud.
+    """
+    return os.environ.get("STREAMLIT_DEPLOYMENT") is None
 
 LOCAL = is_local()
 

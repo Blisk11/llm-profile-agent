@@ -12,7 +12,7 @@ import streamlit as st
 def _labels(lang: str = "English") -> Dict[str, str]:
     return {
         "English": {
-            "title": "Julien Vaughan — Professional Profile Agent",
+            "title": "Julien Vaughan – Dynamic Professional Profile Generator",
             "profile_title": "Profile",
             "skills": "Skills",
             "contact": "Contact",
@@ -27,10 +27,24 @@ def _labels(lang: str = "English") -> Dict[str, str]:
             "example_dropdown": "Select a question",
             "spinner_thinking": "Thinking...",
             "example_button": "Ask",
-            "generate_cv": "📄 Generate CV"
+            "generate_cv": "📄 Generate CV",
+            "app_description_header": "About this App",
+            "app_description_text": (
+                "This interactive Streamlit app serves as a professional portfolio "
+                "and career showcase. It dynamically generates my profile, highlights "
+                "key achievements, technical skills, and projects, and allows you to explore "
+                "my portfolio with live links to apps, dashboards, and code repositories."
+            ),
+            "about_me_header": "About Me",
+            "about_me_text": (
+                "I am Julien Vaughan, a Business Analyst and Data Scientist with expertise "
+                "in Python, SQL, Power BI, and Machine Learning. My work focuses on delivering "
+                "data-driven insights, automating business processes, and building analytics solutions "
+                "that drive measurable impact for SMEs and larger organizations."
+            )
         },
         "Français": {
-            "title": "Julien Vaughan — Agent profil professionnel",
+            "title": "Julien Vaughan – Générateur de Profil Professionnel Dynamique",
             "profile_title": "Profil",
             "skills": "Compétences",
             "contact": "Contact",
@@ -45,7 +59,20 @@ def _labels(lang: str = "English") -> Dict[str, str]:
             "example_dropdown": "Sélectionnez une question",
             "spinner_thinking": "Réflexion en cours...",
             "example_button": "Demander",
-            "generate_cv": "📄 Générer le CV"
+            "generate_cv": "📄 Générer le CV",
+            "app_description_header": "À propos de cette application",
+            "app_description_text": (
+                "Cette application Streamlit interactive présente un portfolio professionnel "
+                "et un profil de carrière. Elle génère dynamiquement mon profil, met en valeur "
+                "mes réalisations clés, mes compétences techniques et mes projets, et permet "
+                "d'explorer mon portfolio avec des liens actifs vers des applications, dashboards et dépôts de code."
+            ),
+            "about_me_header": "À propos de moi",
+            "about_me_text": (
+                "Je suis Julien Vaughan, Business Analyst et Data Scientist spécialisé en Python, SQL, Power BI et Machine Learning. "
+                "Mon travail se concentre sur la fourniture d'analyses data-driven, l'automatisation des processus métiers "
+                "et la construction de solutions analytiques ayant un impact mesurable pour les PME et les grandes organisations."
+            )
         }
     }[lang]
 
@@ -77,6 +104,15 @@ def render_profile_card(profile: Optional[Dict[str, Any]], lang: str = "English"
             if contact.get("address"):
                 st.markdown(f"📍 {contact['address']}")
 
+def render_title(labels: dict):
+    st.markdown(f"## {labels['title']}")  # visible H1 title
+    st.markdown(labels["app_description_text"])
+    st.markdown("---")
+    
+    # About me section
+    st.markdown(f"### {labels['about_me_header']}")
+    st.markdown(labels["about_me_text"])
+    st.markdown("---")
 
 def display_response(response: str, agent_label: Optional[str] = None, as_markdown: bool = True, expanded: bool = True) -> None:
     """Display the agent response in a readable container.
@@ -125,7 +161,7 @@ def render_language_selector() -> tuple[str, str]:
     lang = st.sidebar.radio("Langue / Language", ["Français", "English"])
     mode_options = ["Court", "Long"] if lang == "Français" else ["Short", "Long"]
     mode_label = "Mode de réponse" if lang == "Français" else "Answer Mode"
-    mode = st.sidebar.radio(mode_label, mode_options, index=0)
+    mode = st.sidebar.radio(mode_label, mode_options, index=1)
     mode_value = "short" if mode in ["Short", "Court"] else "long"
     return lang, mode_value
 
