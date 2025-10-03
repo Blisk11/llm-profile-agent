@@ -12,7 +12,7 @@ import streamlit as st
 def _labels(lang: str = "English") -> Dict[str, str]:
     return {
         "English": {
-            "title": "Julien Vaughan – Dynamic Professional Profile Generator",
+            "title": "Julien Vaughan – Virtual Application Assistant",
             "profile_title": "Profile",
             "skills": "Skills",
             "contact": "Contact",
@@ -44,7 +44,7 @@ def _labels(lang: str = "English") -> Dict[str, str]:
             )
         },
         "Français": {
-            "title": "Julien Vaughan – Générateur de Profil Professionnel Dynamique",
+            "title": "Julien Vaughan – Assistant Virtuel de Candidature",
             "profile_title": "Profil",
             "skills": "Compétences",
             "contact": "Contact",
