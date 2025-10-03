@@ -57,20 +57,53 @@
     },
     "experience": [
         {
+            "title": "Patient Engagement Automation (Side Project)",
+            "period": "2024 – Present",
+            "scope": "Healthcare professional support project, built as a personal initiative.",
+            "description": [
+                "Developed an automation system that extracts appointments from Doctolib agendas and sends personalized SMS reminders asking patients to leave a Google review.",
+                "Implemented follow-up workflows to send automated email reminders to customers who had not visited in the past 6 months.",
+                "Designed the system to be fully GDPR-compliant, with all data securely hosted on Leviia, a French cloud provider.",
+                "Delivered measurable growth in patient feedback and retention while ensuring ethical data handling."
+            ],
+            "outcomes": [
+                "Generated thousands of Google reviews with a sustained 5-star rating.",
+                "Increased patient retention by re-engaging inactive customers through automated outreach.",
+                "Built a scalable, privacy-compliant solution with local French hosting, demonstrating alignment with healthcare data regulations."
+            ],
+            "metrics": {
+                "Rating": "5.0 stars maintained",
+                "Retention": "Automated reactivation of patients inactive for >6 months"
+            },
+            "skills_used": [
+                "Python", "Automation", "API Integration", "SMS/Email Campaigns",
+                "GDPR Compliance", "Cloud Hosting (Leviia)", "Process Optimization"
+            ],
+            "url": ["https://maps.app.goo.gl/4T2w5oWRWZUxH5JK8", "https://maps.app.goo.gl/D4sbB6p4ZrjxJqEC8", "https://maps.app.goo.gl/Vbc868cpmRA39ytGA", "https://maps.app.goo.gl/yqWPXq61hqi5cspK9" ]
+        },
+        {
             "title": "Business Analyst",
             "company": "IFM — France Commercial Division",
             "period": "2023 – Present",
-            "scope": "130 employees, €8M turnover (France). IFM global: €1.37B revenue, 8,760 employees.",
+            "scope": "130 employees, €80M turnover (France). IFM global: €1.37B revenue, 8,760 employees.",
             "description": [
-                "Founded Global BI Community connecting developers and stakeholders worldwide.",
-                "Built Top Prospect Model combining internal, INSEE, and cadastral data to rank 100k prospects (vs. 25k historical base).",
-                "Developed first quote-to-order linkage in IFM, exposing untapped sales opportunities.",
-                "Provided dashboards covering orders, quotes, churn, KPIs, digital marketing, and product insights."
+                "Worked across the entire French organization (finance, invoicing, recoveries, digital marketing, sales strategy, and operations).",
+                "Founded the Global BI Community connecting developers and stakeholders worldwide.",
+                "Built a Top Prospect Model combining internal, INSEE, and cadastral data to rank 100k prospects (vs. 25k historical base).",
+                "Extended the model to perform market sizing analyses and to map all SIRET numbers for the upcoming French electronic invoicing mandate.",
+                "Enriched the CRM with public data such as revenue, employee counts, and NAF codes (industry classification).",
+                "Identified personalized high-potential clients by combining internal and public datasets.",
+                "Generated targeted prospect lists including email addresses for direct campaigns.",
+                "Developed the first quote-to-order linkage in IFM, exposing untapped sales opportunities.",
+                "Delivered dashboards covering orders, quotes, churn, KPIs, digital marketing, product insights, and finance.",
+                "Provided recommendations on client credit limits and financial monitoring — a service comparable to offerings from Altares or Ellipro (>€10k/year SaaS), but designed for intelligent integration with internal business rules."
             ],
             "outcomes": [
                 "27x ROI on digital campaigns: €1.3k spent → €35.1k sales in 9 months, 80+ new customers.",
                 "C-level adoption: shifted sales focus to unpriced quotes, influencing sales engineer and digital strategy.",
-                "Dashboards adopted company-wide (sales, finance, C-level)."
+                "Dashboards and models adopted company-wide, across sales, finance, invoicing, and executive leadership.",
+                "Prospect and market-sizing tool transferable to any B2B organization.",
+                "Built an internal alternative to costly SaaS data providers, enabling scalable, rules-driven enrichment and monitoring."
             ],
             "metrics": {
                 "ROI": "27x on email campaigns",
@@ -78,7 +111,8 @@
                 "New_Customers": "80+ from campaigns"
             },
             "skills_used": [
-                "SQL", "Power BI", "Python", "Data Modeling", "ETL", "Business Strategy"
+                "SQL", "Power BI", "Python", "Data Modeling", "ETL", "Business Strategy",
+                "Market Sizing", "Electronic Invoicing Readiness", "CRM Enrichment", "Prospecting Automation"
             ]
         },
         {
@@ -106,6 +140,28 @@
             "skills_used": [
                 "Python", "Power BI", "SQL", "Machine Learning", "Automation", "Leadership"
             ]
+        },
+        {
+            "title": "Personal AI Agent — Interactive Profile Application",
+            "period": "2025",
+            "scope": "Portfolio project demonstrating LLM integration and AI agent design.",
+            "description": [
+                "Designed and deployed a Streamlit web application that acts as a personal AI agent, capable of answering recruiter-style questions using only my validated professional profile.",
+                "Implemented profile enforcement logic to ensure strict adherence to JSON data, preventing hallucination and unauthorized identity overrides.",
+                "Integrated Mistral API with custom wrappers to handle retries, rate limiting, and deterministic responses.",
+                "Developed modular architecture: agent logic, profile loader, reusable UI components, and bilingual interface (English/French).",
+                "Added advanced features including CV generation, conversation history tracking, transcript download, and profile visualization."
+            ],
+            "outcomes": [
+                "Demonstrates expertise in LLM application design, prompt engineering, and agent alignment.",
+                "Provides recruiters and stakeholders with a dynamic, interactive view of my professional profile.",
+                "Serves as a public, portfolio-ready example of combining data science, AI engineering, and user-centric design."
+            ],
+            "skills_used": [
+                "Python", "Streamlit", "LLM Agent Development", "Mistral API", 
+                "Prompt Engineering", "Profile Enforcement", "User Interface Design"
+            ],
+            "url": "https://github.com/Blisk11/llm-profile-agent"
         },
         {
             "title": "Profit Threshold Credit Approval Model (Portfolio Project)",
@@ -157,72 +213,72 @@
             ]
         },
         {
-      "title": "Recherche d'opportunité d’affaire",
-      "period": "Octobre 2019 - Avril 2020",
-      "industry": "Restauration, hôtellerie, France",
-      "responsibilities": [
-        "Analyse des données financières et optimisation possible",
-        "Décisions sur la viabilité du projet versus risques",
-        "Obtention du bail commercial pour l'hôtel/restaurant de St-Martin de Valamas (candidature SoS village)",
-        "Création du site web de réservation",
-        "Achat de matériel",
-        "Création d’un outil excel pour gestion de stock via rapport de caisse + calcul des marges “dynamique”"
-      ],
-      "outcome": "Rupture du bail commercial dû au Covid"
-    },
-    {
-      "title": "Gérance d’une villa de tourisme",
-      "period": "Avril 2019 - Octobre 2019",
-      "industry": "Tourisme, St-Emillion, France",
-      "responsibilities": [
-        "Gérance en auto-entrepreneuriat d’une propriété de luxe de 6 chambres, louée à une clientèle américaine",
-        "Entretien quotidien des chambres",
-        "Prestation traiteur petit déjeuner et dîner",
-        "Entretien du jardin et pelouse",
-        "Réparations diverses et petit travaux"
-      ]
-    },
-    {
-      "title": "R.A.S Interim",
-      "period": "Décembre 2018 - Mars 2019",
-      "responsibilities": [
-        "CACES 1,3,5 pour diverses entreprises"
-      ]
-    },
-    {
-      "title": "Assistant gérant/Barman",
-      "period": "Octobre 2017 - Octobre 2018",
-      "company": "Le relais Caladois",
-      "industry": "Restauration",
-      "responsibilities": [
-        "Restaurant routier formule tout inclus, 250 couverts par jour",
-        "Achats, contrôle d’inventaire",
-        "Rapport de fin de journée et ajustement des erreurs de caisse",
-        "Gestion du site web, de la plateforme google, etc."
-      ]
-    },
-    {
-      "title": "Cuisinier/Barman polyvalent",
-      "period": "Février 2016 - Octobre 2017",
-      "location": "Australie",
-      "responsibilities": [
-        "3 hôtels/restaurants différents, contrats de 3 à 5 mois chacun, pour des postes variés",
-        "Superviseur (3 à 5 employées)",
-        "Chef de partie: pizza, menu typique anglo-saxon et déjeuner",
-        "Barman, jusqu’à 1000$AUD encaissés par heure",
-        "Livraisons, conduite de chariot élévateur, déchargement",
-        "Contrôle d’inventaire"
-      ]
-    },
-    {
-      "title": "Voyage + Volontariat",
-      "period": "Septembre 2015 - Février 2016",
-      "locations": ["Cambodge", "Thailand", "Laos"],
-      "responsibilities": [
-        "Enseignement de l’anglais",
-        "Travail de ferme"
-      ]
-    },
+        "title": "Recherche d'opportunité d’affaire",
+        "period": "Octobre 2019 - Avril 2020",
+        "industry": "Restauration, hôtellerie, France",
+        "responsibilities": [
+            "Analyse des données financières et optimisation possible",
+            "Décisions sur la viabilité du projet versus risques",
+            "Obtention du bail commercial pour l'hôtel/restaurant de St-Martin de Valamas (candidature SoS village)",
+            "Création du site web de réservation",
+            "Achat de matériel",
+            "Création d’un outil excel pour gestion de stock via rapport de caisse + calcul des marges “dynamique”"
+        ],
+        "outcome": "Rupture du bail commercial dû au Covid"
+        },
+        {
+        "title": "Gérance d’une villa de tourisme",
+        "period": "Avril 2019 - Octobre 2019",
+        "industry": "Tourisme, St-Emillion, France",
+        "responsibilities": [
+            "Gérance en auto-entrepreneuriat d’une propriété de luxe de 6 chambres, louée à une clientèle américaine",
+            "Entretien quotidien des chambres",
+            "Prestation traiteur petit déjeuner et dîner",
+            "Entretien du jardin et pelouse",
+            "Réparations diverses et petit travaux"
+        ]
+        },
+        {
+        "title": "R.A.S Interim",
+        "period": "Décembre 2018 - Mars 2019",
+        "responsibilities": [
+            "CACES 1,3,5 pour diverses entreprises"
+        ]
+        },
+        {
+        "title": "Assistant gérant/Barman",
+        "period": "Octobre 2017 - Octobre 2018",
+        "company": "Le relais Caladois",
+        "industry": "Restauration",
+        "responsibilities": [
+            "Restaurant routier formule tout inclus, 250 couverts par jour",
+            "Achats, contrôle d’inventaire",
+            "Rapport de fin de journée et ajustement des erreurs de caisse",
+            "Gestion du site web, de la plateforme google, etc."
+        ]
+        },
+        {
+        "title": "Cuisinier/Barman polyvalent",
+        "period": "Février 2016 - Octobre 2017",
+        "location": "Australie",
+        "responsibilities": [
+            "3 hôtels/restaurants différents, contrats de 3 à 5 mois chacun, pour des postes variés",
+            "Superviseur (3 à 5 employées)",
+            "Chef de partie: pizza, menu typique anglo-saxon et déjeuner",
+            "Barman, jusqu’à 1000$AUD encaissés par heure",
+            "Livraisons, conduite de chariot élévateur, déchargement",
+            "Contrôle d’inventaire"
+        ]
+        },
+        {
+        "title": "Voyage + Volontariat",
+        "period": "Septembre 2015 - Février 2016",
+        "locations": ["Cambodge", "Thailand", "Laos"],
+        "responsibilities": [
+            "Enseignement de l’anglais",
+            "Travail de ferme"
+        ]
+        },
         {
             "title": "Back-Office employee",
             "company": "Groupe Aveo (Crédit Agricole subcontractor)",
@@ -231,37 +287,7 @@
                 "Analyzed fraud cases under Mastercard regulations.",
                 "Created filters for dossier triage to streamline workflows.",
                 "Translated English-French for the team.",
-                "Achieved a 250% performance bonus due to high case throughput."
-            ]
-        },
-        {
-            "title": "Childcare Provider",
-            "company": "Mary Poppins",
-            "period": "August 2014 – September 2014",
-            "location": "Lyon, France",
-            "description": [
-                "Cared for a family of 3 children (ages 6 to 8).",
-                "Evaluated options for continuing education in France."
-            ]
-        },
-        {
-            "title": "Part-Time Employee",
-            "company": "Winnipeg Soccer Federation",
-            "period": "October 2013 – May 2014",
-            "location": "Canada",
-            "description": [
-                "Managed reservations and field setup.",
-                "Provided first aid and emergency support."
-            ]
-        },
-        {
-            "title": "Factory Worker",
-            "company": "Mitchell Aerospace",
-            "period": "June 2012 – September 2012",
-            "location": "Canada",
-            "description": [
-                "Fabricated sand molds for aluminum parts.",
-                "Maintained workplace cleanliness."
+                "Achieved a 250% performance bonus due to high case throughput and optimizing processes."
             ]
         },
         {
@@ -273,24 +299,6 @@
                 "Secured the first public sector contract ($2M CAD).",
                 "Responded to RFQs and managed order fulfillment.",
                 "Prospected for new clients and translated English-French documents."
-            ]
-        },
-        {
-            "title": "Order Preparer / Quality Control Assistant",
-            "company": "Joint Étanche R.B",
-            "period": "February 2011 – June 2011",
-            "location": "Canada",
-            "description": [
-                "Prepared orders and was promoted to Quality Control Assistant."
-            ]
-        },
-        {
-            "title": "Delivery Driver",
-            "company": "Ventrex",
-            "period": "April 2010 – August 2010",
-            "location": "Canada",
-            "description": [
-                "Delivered vending machines using a 40 m³ truck."
             ]
         },
         {
