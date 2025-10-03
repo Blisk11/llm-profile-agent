@@ -114,7 +114,7 @@ def main():
     # Load profile and render profile card
     profile = load_profile()
     with st.sidebar:
-        render_cv_generator(ask_agent)
+        render_cv_generator(labels, ask_agent)
         if profile:
             render_profile_card(profile, lang, expanded=False)
 
