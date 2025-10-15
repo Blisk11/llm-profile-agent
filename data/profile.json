@@ -128,6 +128,32 @@
   ],
   "experience": [
     {
+      "title": "Founder, Data Science Consulting — OAService (Outcome as a Service)",
+      "type": "business",
+      "period": "2025 – Present",
+      "start_year": 2025,
+      "end_year": null,
+      "present": true,
+      "scope": "Independent consulting business focused on delivering measurable value through AI and data science.",
+      "description": [
+        "Builds AI tools and automation solutions tailored to client needs.",
+        "Performs data and process audits to identify high-impact opportunities.",
+        "Delivers recommendations and prototypes to optimize business outcomes.",
+        "No client projects yet (business recently launched)."
+      ],
+      "outcomes": [
+        "Positioned to deliver efficiency and optimization as core value.",
+        "Ready to help companies unlock value from data and automation."
+      ],
+      "skills_used": [
+        "AI Tool Development",
+        "Data Science Consulting",
+        "Process Optimization",
+        "Business Analysis"
+      ],
+      "tags": ["consulting", "ai_tools", "audit", "optimization", "efficiency"]
+    },
+    {
       "title": "Patient Engagement Automation (Side Project)",
       "type": "project",
       "period": "2022 – Present",
