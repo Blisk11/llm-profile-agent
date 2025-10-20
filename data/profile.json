@@ -162,7 +162,7 @@
       "present": true,
       "scope": "Healthcare professional support project, built as a personal initiative.",
       "description": [
-        "Developed an automation system that extracts appointments from Doctolib agendas and sends personalized SMS reminders asking patients to leave a Google review.",
+        "Users upload their agendas and we sends personalized SMS reminders asking patients to leave a Google review.",
         "Implemented follow-up workflows to send automated email reminders to customers who had not visited in the past 6 months. EC2 ubuntu server hosted on AWS",
         "Designed the system to be fully GDPR-compliant, with all data securely hosted on Leviia, a French cloud provider."
       ],
