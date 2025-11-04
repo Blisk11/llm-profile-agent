@@ -130,7 +130,10 @@ def main():
     # Callback for question submission
     def handle_question(question: str) -> str:
         with st.spinner(labels["spinner_thinking"]):
-            response = ask_agent(question, mode=mode)
+            try:
+                response = ask_agent(question, mode=mode)
+            except Exception as e:
+                response = f"Temporary issue querying model: {e}"
             if response:
                 st.session_state.history.append({
                     "question": question,

@@ -127,6 +127,12 @@ While this is a personal profile project, suggestions for improvements are welco
 2. Create a feature branch
 3. Submit a pull request
 
+### Reliability & Rate Limiting
+- Exponential backoff (up to 5 attempts) on HTTP 429 or capacity messages.
+- Friendly fallback message instead of crashing the app.
+- In-memory cache (15 min TTL, 200 items) reduces duplicate upstream calls.
+- Simple throttle enforces a minimum interval between requests.
+
 ---
 
 Built with ❤️ using Streamlit and Mistral AI
