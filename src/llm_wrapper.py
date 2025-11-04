@@ -88,7 +88,7 @@ def query_model(prompt: str, mode: str = "short") -> str:
     for attempt in range(max_retries):
         try:
             response = client.chat.complete(
-                model="mistral-medium",
+                model="mistral-medium-latest",
                 messages=[
                     {"role": "system", "content": PROFILE_CONTEXT},
                     {"role": "user", "content": full_user_prompt},
