@@ -660,6 +660,67 @@
       "description": "Finished 13th overall and 1st among unranked players in tournament with a performance rating of 1708, highlighting analytical thinking and tactical execution."
     }
   ],
+  "projects": [
+    {
+      "name": "OaService",
+      "repo": "OaService",
+      "visibility": "private",
+      "url": "https://github.com/Blisk11/OaService",
+      "description": "Core repository for OAService (Outcome as a Service) consulting tooling. Houses automation scripts, data audit utilities, and AI-powered analysis tools developed for the independent consulting business.",
+      "tags": ["consulting", "automation", "ai_tools", "data_audit", "python"],
+      "status": "active"
+    },
+    {
+      "name": "OaService-Marketing",
+      "repo": "OaService-Marketing",
+      "visibility": "private",
+      "url": "https://github.com/Blisk11/OaService-Marketing",
+      "description": "Marketing automation module under the OAService umbrella. Includes the Patient Engagement Automation system — SMS/email reminder workflows for healthcare professionals, Google review campaigns, GDPR-compliant data handling hosted on Leviia (French cloud), and reactivation sequences for inactive patients.",
+      "highlights": [
+        "SMS reminder workflows tied to agenda uploads",
+        "Automated email reactivation for patients inactive >6 months",
+        "EC2 (Ubuntu/AWS) server infrastructure",
+        "GDPR-compliant with Leviia French cloud hosting",
+        "Sustained 5.0-star Google rating across multiple clients"
+      ],
+      "tags": ["automation", "marketing", "sms", "email", "gdpr", "aws", "python"],
+      "status": "active"
+    },
+    {
+      "name": "llm-profile-agent",
+      "repo": "llm-profile-agent",
+      "visibility": "public",
+      "url": "https://github.com/Blisk11/llm-profile-agent",
+      "description": "Personal AI agent built as a Streamlit web app. Answers recruiter-style questions grounded strictly in a validated profile JSON. Features profile-enforcement logic to prevent hallucination, Mistral API integration with retries, bilingual EN/FR UI, and on-demand CV generation.",
+      "highlights": [
+        "Deterministic, profile-grounded LLM responses",
+        "Bilingual EN/FR interface",
+        "CV generation module",
+        "Mistral API with retry logic",
+        "Prompt engineering and identity enforcement"
+      ],
+      "skills_used": ["Python", "Streamlit", "LLM Agent Development", "Mistral API", "Prompt Engineering"],
+      "tags": ["llm", "alignment", "prompt_engineering", "portfolio"],
+      "status": "active"
+    },
+    {
+      "name": "Profit-Threshold-for-Credit-Approval-model",
+      "repo": "Profit-Threshold-for-Credit-Approval-model",
+      "visibility": "public",
+      "url": "https://github.com/Blisk11/Profit-Threshold-for-Credit-Approval-model",
+      "live_app": "https://profit-threshold-for-credit-approval-model.streamlit.app/",
+      "description": "Credit approval model that optimizes on economic profit rather than accuracy or AUC. Simulates different threshold strategies and compares their real-world profitability using 9 years of Lending Club data.",
+      "highlights": [
+        "+35% profit vs. no-threshold baseline",
+        "3.5M$ profit vs. 2.6M$ at baseline",
+        "Applicant-level profit/loss evaluation",
+        "Streamlit simulation app for strategy comparison"
+      ],
+      "skills_used": ["Python", "Streamlit", "Machine Learning", "Financial Modeling", "Data Visualization"],
+      "tags": ["risk_modeling", "profit_optimization", "simulation", "portfolio"],
+      "status": "complete"
+    }
+  ],
   "do_not_answer": [
     "salary expectations",
     "personal family details",
