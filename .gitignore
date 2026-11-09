@@ -26,3 +26,8 @@ main.py
 llm_wrapper_safe.py
 _TEST/*
 llm_profile_agent.egg-info
+
+# Local workstation tooling
+/.codex/config.toml
+/.agents/skills/skill-audit/
+/AGENTS.md
