@@ -2,7 +2,7 @@
 
 > An AI-powered professional profile assistant built with Mistral AI and Streamlit
 
-This agent serves as an interactive representation of **Julien Vaughan's** professional profile, providing dynamic responses to career-related inquiries in both English and French. Built with deterministic response generation and strict profile adherence.
+This agent serves as an interactive representation of **Julien Vaughan's** professional profile, providing dynamic responses to career-related inquiries in both English and French. Uses profile prompting, temperature-zero generation and input checks; generated claims still require review.
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)
@@ -17,9 +17,9 @@ This agent serves as an interactive representation of **Julien Vaughan's** profe
   - Language-specific conversation style
 
 - **Smart Response System**
-  - Profile-driven answers (no hallucination)
+  - Profile-guided answers (factual correctness is not guaranteed)
   - Short/Long response modes
-  - Deterministic output with profile enforcement
+  - Temperature-zero generation with prompt-based profile guidance
 
 - **Professional UI**
   - Interactive Streamlit interface
@@ -36,7 +36,7 @@ This agent serves as an interactive representation of **Julien Vaughan's** profe
 
 1. **Clone & Install:**
    ```bash
-   git clone https://github.com/username/llm-profile-agent.git
+   git clone https://github.com/Blisk11/llm-profile-agent.git
    cd llm-profile-agent
    pip install -e .
    ```
@@ -110,9 +110,9 @@ The application supports multiple deployment options:
 
 ## 🔒 Security
 
-- Profile enforcement prevents unauthorized modifications
+- Input keyword checks and a system prompt guide profile adherence; no output factual validator is implemented
 - Rate limiting protects against API abuse
-- No sensitive data stored in session state
+- Streamlit session state retains submitted questions, answers and generated CV text for the active session. Avoid entering sensitive information; downloads contain the displayed conversation
 - Environment-aware configuration loading
 
 ## 📜 License
